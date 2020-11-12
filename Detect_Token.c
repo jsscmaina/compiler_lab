@@ -111,13 +111,13 @@ void parse(char* str)
 	int left = 0, right = 0;
 	int len = strlen(str);
 
-	while (right <= len && left <= right) {
+		while (right <= len && left <= right) {
 		if (isDelimiter(str[right]) == false)
 			right++;
 
 		if (isDelimiter(str[right]) == true && left == right) {
 			if (isOperator(str[right]) == true)
-				printf("'%c' IS AN OPERATOR\n", str[right]);
+				printf("(Operator, %c) \n", str[right]);
 
 			right++;
 			left = right;
@@ -126,21 +126,21 @@ void parse(char* str)
 			char* subStr = subString(str, left, right - 1);
 
 			if (isKeyword(subStr) == true)
-				printf("'%s' IS A KEYWORD\n", subStr);
+				printf("(Keyword, %s)\n", subStr);
 
 			else if (isInteger(subStr) == true)
-				printf("'%s' IS AN INTEGER\n", subStr);
+				printf("(Integer, %s)\n", subStr);
 
 			else if (isRealNumber(subStr) == true)
-				printf("'%s' IS A REAL NUMBER\n", subStr);
+				printf("(Real Number, %s)\n", subStr);
 
 			else if (validIdentifier(subStr) == true
 					&& isDelimiter(str[right - 1]) == false)
-				printf("'%s' IS A VALID IDENTIFIER\n", subStr);
+				printf("(Identifier, %s)\n", subStr);
 
 			else if (validIdentifier(subStr) == false
 					&& isDelimiter(str[right - 1]) == false)
-				printf("'%s' IS NOT A VALID IDENTIFIER\n", subStr);
+				printf("(Illegal Character, %s)\n", subStr);
 			left = right;
 		}
 	}
